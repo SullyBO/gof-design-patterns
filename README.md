@@ -3,6 +3,7 @@
 Personal study project implementing Gang of Four design patterns in Kotlin.
 
 ## Structure
+```
 patterns/
 ├── creational/
 │   ├── abstract-factory/
@@ -10,7 +11,7 @@ patterns/
 │   └── ...
 ├── structural/
 └── behavioral/
-
+```
 ### Creational
 - [ ] Abstract Factory
 - [ ] Builder
