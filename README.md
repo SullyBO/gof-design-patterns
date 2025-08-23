@@ -17,11 +17,13 @@ patterns/
 Code Formatting
 This project uses Spotless for consistent code formatting:
 
-### Getting Starterd
+### Getting Started
 ```bash
 git clone https://github.com/SullyBO/gof-design-patterns.git
-cd design-patterns
+cd gof-design-patterns
 ```
+
+### Code Formatting
 ```bash
 # Check formatting
 ./gradlew spotlessCheck             # Unix/MacOS: ./gradlew | Windows: gradlew
@@ -70,7 +72,7 @@ Before committing, always run: `./gradlew preCommitCheck`
 
 ## Languages
 
-**Kotlin**: Primary implementations focusing on idiomatic JVM patterns
+**Kotlin**: Focus on idiomatic, Kotlin-native pattern implementations
 
 ## License
 
