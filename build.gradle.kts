@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.21"
     id("com.diffplug.spotless") version "6.23.3"
+    id("io.gitlab.arturbosch.detekt") version "1.23.3"
     application
 }
 
@@ -34,8 +35,14 @@ spotless {
     }
 }
 
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    config.setFrom("$projectDir/config/detekt/detekt.yml")
+}
+
 tasks.register("preCommitCheck") {
-    dependsOn("spotlessCheck")
+    dependsOn("spotlessCheck", "detekt", "build")
     doLast {
         println("Pre-commit formatting checks passed!")
     }
