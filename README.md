@@ -14,19 +14,21 @@ patterns/
 ```
 
 ## Development Setup
-Code Formatting
-This project uses Spotless for consistent code formatting:
+You'll need Gradle installed. On MacOS: `brew install gradle`
 
 ### Getting Started
 ```bash
 git clone https://github.com/SullyBO/gof-design-patterns.git
 cd gof-design-patterns
+
+gradle wrapper
 ```
 
-### Code Formatting
+### Code Quality & Formatting
+This project uses Spotless for formatting and Detekt for checking code quality:
 ```bash
-# Check formatting
-./gradlew spotlessCheck             # Unix/MacOS: ./gradlew | Windows: gradlew
+# Check formatting and code quality
+./gradlew spotlessCheck detekt             # Unix/MacOS: ./gradlew | Windows: gradlew
 
 # Apply formatting fixes
 ./gradlew spotlessApply
@@ -34,12 +36,15 @@ cd gof-design-patterns
 # Build the project
 ./gradlew build
 
-
-# Run formatting checks
+# Run quality, formatting, and build checks
 ./gradlew preCommitCheck
 ```
 
-Before committing, always run: `./gradlew preCommitCheck`
+Before committing always run: `./gradlew preCommitCheck` or create a git hook (Optional):
+```bash
+echo '#!/bin/sh\n./gradlew preCommitCheck' > .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+```
 
 ### Creational
 - [ ] Abstract Factory
