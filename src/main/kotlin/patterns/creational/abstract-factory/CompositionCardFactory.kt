@@ -21,7 +21,7 @@
  * - Doesn't have to be singleton, but consistency guarantees are nice (more on those in singleton impl.)
  */
 object CompositionCardFactoryProvider {
-    fun getFactory(cardType: CardType): Any = // Can use enums for strong typing
+    fun getFactory(cardType: CardType): Any = // Hmm how to get rid of this 'any' crutch..
         when (cardType) {
             CardType.MINION -> MinionCardFactory
             CardType.SPELL -> SpellCardFactory
