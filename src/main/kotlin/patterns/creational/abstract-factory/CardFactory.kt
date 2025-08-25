@@ -1,17 +1,16 @@
-
-
 /**
- * Abstract factory for creating cards with singleton concrete implementations.
+ * Abstract factory (Singleton) for creating card families based on rarity.
  *
  * Defines the interface for creating different types of cards
  * while allowing concrete factories to implement specific creation logic.
  *
- * ## Trade-offs (vs composition approach):
- * Pros: Enforced contract through abstract methods, single interface to maintain.
+ * ## Trade-offs:
+ * Pros: Guarantees coordinated families - legendary minions and spells both
+ * get legendary treatment. Easy to add new rarity tiers.
  *
- * Cons: As stated in the book, adding new card types requires modifying this abstract class
- * and ALL concrete factory impl, even if they don't need the new card type.
- * Can get really painful real quick.
+ * Cons: Adding new card types (e.g., weapons) requires modifying the
+ * interface and ALL concrete factory implementations, even if some rarities
+ * don't support the new type yet.
  *
  * ## Kotlin-specific nice things:
  * - Object keyword means no singleton boilerplate
@@ -19,8 +18,8 @@
  * ## Note:
  * - Doesn't have to be singleton, but consistency guarantees are nice (more on those in singleton impl.)
  */
-abstract class InheritanceCardFactory {
-        abstract fun createMinion(
+interface CardFactory {
+    fun createMinion(
         id: Int,
         name: String,
         cost: Int,
@@ -29,7 +28,7 @@ abstract class InheritanceCardFactory {
         health: Int,
     ): Minion
 
-    abstract fun createSpell(
+    fun createSpell(
         id: Int,
         name: String,
         cost: Int,
@@ -38,15 +37,15 @@ abstract class InheritanceCardFactory {
     ): Spell
 }
 
-object InheritanceCardFactoryProvider {
-    fun getFactory(cardType: CardType): InheritanceCardFactory =
+object CardFactoryProvider {
+    fun getFactory(cardType: CardType): CardFactory =
         when (cardType) {
-            CardType.MINION -> MinionCardFactoryImpl
-            CardType.SPELL -> SpellCardFactoryImpl
+            CardType.LEGENDARY -> LegendaryCardFactoryImpl
+            CardType.RARE -> RareCardFactoryImpl
         }
 }
 
-object MinionCardFactoryImpl : InheritanceCardFactory() {
+object LegendaryCardFactoryImpl : CardFactory {
     override fun createMinion(
         id: Int,
         name: String,
@@ -56,7 +55,7 @@ object MinionCardFactoryImpl : InheritanceCardFactory() {
         health: Int,
     ): Minion {
         val cardInfo = CardInfo.create(id, name, cost, effect)
-        return Minion.create(cardInfo, attack, health)
+        return LegendaryMinion.create(cardInfo, attack, health)
     }
 
     override fun createSpell(
@@ -66,11 +65,12 @@ object MinionCardFactoryImpl : InheritanceCardFactory() {
         effect: () -> Unit,
         damage: Int?,
     ): Spell {
-        throw UnsupportedOperationException("This factory only creates minions")
+        val cardInfo = CardInfo.create(id, name, cost, effect)
+        return LegendarySpell.create(cardInfo, damage)
     }
 }
 
-object SpellCardFactoryImpl : InheritanceCardFactory() {
+object RareCardFactoryImpl : CardFactory {
     override fun createMinion(
         id: Int,
         name: String,
@@ -79,7 +79,8 @@ object SpellCardFactoryImpl : InheritanceCardFactory() {
         attack: Int,
         health: Int,
     ): Minion {
-        throw UnsupportedOperationException("This factory only creates spells")
+        val cardInfo = CardInfo.create(id, name, cost, effect)
+        return RareMinion.create(cardInfo, attack, health)
     }
 
     override fun createSpell(
@@ -90,6 +91,6 @@ object SpellCardFactoryImpl : InheritanceCardFactory() {
         damage: Int?,
     ): Spell {
         val cardInfo = CardInfo.create(id, name, cost, effect)
-        return Spell.create(cardInfo, damage)
+        return RareSpell.create(cardInfo, damage)
     }
 }
