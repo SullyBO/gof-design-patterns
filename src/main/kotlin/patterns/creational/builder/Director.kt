@@ -1,42 +1,37 @@
 /**
  * Deviated from textbook implementation to expose a fluent interface.
  */
-class Director(
-    private var builder: CardBuilder
-    ) {
-    
+class Director<T : CardBuilder>(
+    private var builder: T,
+) {
     /**
      * Pedagogically included, I'd prefer to just create new directors than reuse.
      */
-    fun changeBuilder(newBuilder: CardBuilder) {
+    fun changeBuilder(newBuilder: T) {
         builder = newBuilder
     }
-    
-    @Suppress("UNCHECKED_CAST")
-    fun <T : CardBuilder> constructCommonCard(): T {
+
+    fun constructCommonCard(): T {
         builder.reset()
         builder.setRarity(Rarity.COMMON)
-        return builder as T
+        return builder
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T : CardBuilder> constructRareCard(): T {
+    fun constructRareCard(): T {
         builder.reset()
         builder.setRarity(Rarity.RARE)
-        return builder as T
+        return builder
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T : CardBuilder> constructEpicCard(): T {
+    fun constructEpicCard(): T {
         builder.reset()
         builder.setRarity(Rarity.EPIC)
-        return builder as T
+        return builder
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T : CardBuilder> constructLegendaryCard(): T {
+    fun constructLegendaryCard(): T {
         builder.reset()
         builder.setRarity(Rarity.LEGENDARY)
-        return builder as T
+        return builder
     }
 }

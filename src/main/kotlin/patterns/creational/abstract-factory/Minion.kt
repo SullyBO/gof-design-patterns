@@ -1,5 +1,3 @@
-
-
 /**
  * Represents a minion card in a card game.
  *
