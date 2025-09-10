@@ -1,5 +1,3 @@
-@file:Suppress("MagicNumber")
-
 fun main() {
     demonstrateAbstractFactory()
 }
