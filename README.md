@@ -47,11 +47,11 @@ chmod +x .git/hooks/pre-commit
 ```
 
 ### Creational
-- [ ] Abstract Factory
-- [ ] Builder
-- [ ] Factory Method
-- [ ] Prototype
-- [ ] Singleton
+- ✅ Abstract Factory
+- ✅ Builder
+- ✅ Factory Method
+- ✅ Prototype
+- ✅ Singleton
 
 ### Structural
 - [ ] Adapter
@@ -75,7 +75,7 @@ chmod +x .git/hooks/pre-commit
 - [ ] Template Method
 - [ ] Visitor
 
-## Languages
+## Language
 
 **Kotlin**: Focus on idiomatic, Kotlin-native pattern implementations
 
