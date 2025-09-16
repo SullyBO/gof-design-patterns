@@ -1,6 +1,12 @@
 # Design Patterns Implementation
 
-Personal study project implementing Gang of Four design patterns in Kotlin.
+## About
+Personal study project implementing all 23 Gang of Four design patterns with modern, idiomatic Kotlin code. Focus on practical examples and analysis of when/why to use each pattern.
+
+## Approach
+- Kotlin-idiomatic implementations over direct translations
+- Practical and relatable examples used
+- Analysis of pattern applicability in modern development
 
 ## Structure
 ```
