@@ -53,11 +53,11 @@ chmod +x .git/hooks/pre-commit
 ```
 
 ### Creational
-- ✅ Abstract Factory
-- ✅ Builder
-- ✅ Factory Method
-- ✅ Prototype
-- ✅ Singleton
+- [ ] Abstract Factory
+- [ ] Builder
+- [ ] Factory Method
+- [ ] Prototype
+- [ ] Singleton
 
 ### Structural
 - [ ] Adapter
