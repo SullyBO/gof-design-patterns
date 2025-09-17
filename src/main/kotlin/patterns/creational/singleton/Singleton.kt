@@ -1,5 +1,3 @@
-
-
 /**
  * Singleton pattern ensuring only one instance exists with global access.
  *
