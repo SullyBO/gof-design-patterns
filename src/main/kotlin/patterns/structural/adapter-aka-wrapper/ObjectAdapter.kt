@@ -6,7 +6,7 @@
  * calls to the wrapped object while translating the interface.
  *
  * ## Trade-offs:
- * Pros: Integrates legacy or 3rd party code without modification. 
+ * Pros: Integrates legacy or 3rd party code without modification.
  * Enables reuse of existing functionality.
  *
  * Cons: Adds indirection layer. Can hide the complexity of interface mismatches.
@@ -24,28 +24,39 @@
  */
 interface FileManager {
     fun readFile(filename: String): String
-    fun writeFile(filename: String, content: String)
+
+    fun writeFile(
+        filename: String,
+        content: String,
+    )
 }
 
 class LegacyFileHandler {
-    fun loadFromDisk(path: String): ByteArray { 
+    fun loadFromDisk(path: String): ByteArray {
         println("Loaded file $path")
         return byteArrayOf(72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33)
     }
-    fun saveToDisk(path: String, bytes: ByteArray) {
+
+    fun saveToDisk(
+        path: String,
+        bytes: ByteArray,
+    ) {
         println("Saved file of size: ${bytes.size} bytes to $path")
     }
 }
 
 class FileAdapter(
-    private val legacyHandler: LegacyFileHandler
-    ) : FileManager {
-        override fun readFile(filename: String): String { 
-            val bytes = legacyHandler.loadFromDisk(filename)
-            return String(bytes)
-         }
-        
-        override fun writeFile(filename: String, content: String) { 
-            legacyHandler.saveToDisk(filename, content.toByteArray())
-         }
+    private val legacyHandler: LegacyFileHandler,
+) : FileManager {
+    override fun readFile(filename: String): String {
+        val bytes = legacyHandler.loadFromDisk(filename)
+        return String(bytes)
+    }
+
+    override fun writeFile(
+        filename: String,
+        content: String,
+    ) {
+        legacyHandler.saveToDisk(filename, content.toByteArray())
+    }
 }
