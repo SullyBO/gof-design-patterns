@@ -11,10 +11,14 @@ gradle-app.setting
 *.iml
 *.ipr
 *.iws
+*~
+bin/
 
 # OS
 .DS_Store
 Thumbs.db
+*.tmp
+*.log
 
 # Kotlin
 *.class
