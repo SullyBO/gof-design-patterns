@@ -28,6 +28,7 @@ import java.io.FileNotFoundException
  * - Consider using simple caching if you don't need full intrinsic/extrinsic split
  * - Watch for memory leaks if flyweights hold references to extrinsic state
  * - For small datasets, runtime overhead might outweigh benefits
+ * - This is a smart reference (subtype of proxy pattern)
  *
  * ===========================
  * The Context class for Game Objects
