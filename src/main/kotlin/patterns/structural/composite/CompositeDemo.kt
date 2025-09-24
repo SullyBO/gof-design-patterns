@@ -1,6 +1,6 @@
 fun main() {
     println("=== Composite Pattern Demo ===\n")
-    
+
     val cheeseBurger = LeafItem("Cheese Borgir", 8.99)
     val frenchFries = LeafItem("French Fry", 3.99)
     val softDrink = LeafItem("Soder", 2.99)
@@ -13,12 +13,14 @@ fun main() {
         item.displayItemDetails()
     }
 
-    val cheeseBurgerMeal = CompositeBundle(mutableListOf(
-        cheeseBurger, 
-        frenchFries, 
-        softDrink
+    val cheeseBurgerMeal =
+        CompositeBundle(
+            mutableListOf(
+                cheeseBurger,
+                frenchFries,
+                softDrink,
+            ),
         )
-    )
 
     println("\n--- Cheese Burger Meal Contents: ---")
     cheeseBurgerMeal.displayItemDetails()

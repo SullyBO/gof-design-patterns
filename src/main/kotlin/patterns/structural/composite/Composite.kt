@@ -26,6 +26,7 @@
  */
 interface ComponentPurchasable {
     fun getPrice(): Double
+
     fun displayItemDetails()
 }
 
@@ -63,5 +64,5 @@ class CompositeBundle constructor(
 
     override fun displayItemDetails() {
         children.forEach { it.displayItemDetails() }
-     }
+    }
 }
