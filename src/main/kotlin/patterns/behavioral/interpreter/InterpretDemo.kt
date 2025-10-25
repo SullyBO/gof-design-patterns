@@ -5,19 +5,22 @@
  * needing to bother programmers unless it's to add new features.
  */
 fun main() {
-    val context = QuestContext(
-        playerLevel = 12,
-        gold = 600,
-        inventory = setOf("stinky cheese", "key"),
-        enemiesKilled = mapOf("pirate" to 200, "murloc" to 0)
-    )
+    val context =
+        QuestContext(
+            playerLevel = 12,
+            gold = 600,
+            inventory = setOf("stinky cheese", "key"),
+            enemiesKilled = mapOf("pirate" to 200, "murloc" to 0),
+        )
 
-    val questConditions = AndExpression(
-        GreaterThanOrEqual(
-            NumericVariable("level"),
-            NumberLiteral(10)),
-            HasItemExpression(StringLiteral("key"))
-    )
+    val questConditions =
+        AndExpression(
+            GreaterThanOrEqual(
+                NumericVariable("level"),
+                NumberLiteral(10),
+            ),
+            HasItemExpression(StringLiteral("key")),
+        )
 
     val questAccepted = questConditions.interpret(context)
     println("Quest conditions met: $questAccepted")
